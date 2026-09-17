@@ -72,6 +72,10 @@ Kiểm tra sau thay đổi: `npm run typecheck`, `npm run lint`, `npm test` (1 p
 
 Ảnh kiểm tra mới trên iPhone cho thấy câu gợi ý của form Thêm cây bị tràn sang phải. Nguyên nhân là layout hàng ngang chứa emoji và `Text`, nhưng phần `Text` không có phần tử bọc được phép co lại theo chiều ngang. AI đã thay vùng này bằng `tipCopy` (`flex: 1`, `minWidth: 0`) và `tipText` (`flexShrink: 1`, `lineHeight: 23`), đồng thời rút gọn câu gợi ý mà không thay đổi ý nghĩa. Đây là điều chỉnh layout responsive; không thay đổi dữ liệu, route hay hành vi lưu cây.
 
+## Sửa chữ hero quá nhỏ ở màn hình đăng nhập ngày 17/09/2026
+
+Ảnh runtime iPhone cho thấy “Chăm cây / nhẹ nhàng hơn” hiển thị rất nhỏ trong hero đăng nhập. AI xác định nguyên nhân là `adjustsFontSizeToFit` cùng `numberOfLines={2}` đã buộc React Native giảm font để thỏa điều kiện layout. Hai thuộc tính được loại bỏ; thay bằng `brandCopy` co giãn (`flex: 1`, `minWidth: 0`), cỡ chữ responsive 25–29 và `lineHeight: 35`. Không giới hạn số dòng nên nội dung vẫn đọc được khi người dùng tăng cỡ chữ hệ thống.
+
 ## Cách tự rà soát trước khi nộp
 
 Chạy `npm install`, `npm run typecheck`, `npm run lint`, `npm test`; sau đó chạy ứng dụng và làm theo phần “Hướng dẫn kiểm thử thủ công” trong README. Khi hoàn tất, thêm các commit Git thật theo tiến độ làm việc, không bao gồm `node_modules`, rồi nộp mã nguồn cùng README và AI_LOG.
